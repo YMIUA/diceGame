@@ -14,6 +14,7 @@ const RESET_VALUE = 2;
 let scores = [0, 0];
 let activePlayer = 0;
 let current = 0;
+let limit = 100;
 const firstDiceElement = document.querySelector('.first-dice');
 const secondDiceElement = document.querySelector('.second-dice');
 
@@ -41,7 +42,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
   if (firstDice !== RESET_VALUE && secondDice !== RESET_VALUE && firstDice !== secondDice) {
     current = current + firstDice + secondDice;
     document.getElementById('current-'+activePlayer).textContent = current;
-    if (scores[activePlayer] + current >= 100) {
+    if (scores[activePlayer] + current >= limit) {
       alert(`Player ${activePlayer} won!!!`);
     }
   } else {
@@ -67,5 +68,6 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 
 
 document.querySelector('.btn-new').addEventListener('click', function() {
+  limit = document.getElementById('limit-input').value;
   initGame();
 });
